@@ -1,6 +1,7 @@
 <p>
   <img width="100%" src="https://assets.solidjs.com/banner?type=solid-material-color&background=tiles&project=%20" alt="solid-material-color">
 </p>
+
 # solid-material-color
 
 `solid-material-color` is a function used in the solid framework or directly called in ordinary functions.
