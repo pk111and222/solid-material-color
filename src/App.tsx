@@ -68,7 +68,7 @@ const Playground: Component = () => {
           <option value="reduced">reduced</option>
         </select>
       </div>
-      <For each={Object.entries(scheme)} fallback={<div>Loading...</div>}>
+      <For each={Object.entries(scheme())} fallback={<div>Loading...</div>}>
         {([key, value]: [string, string]) => <div style={{ display: "flex", gap: '10px', 'margin-top': '5px' }}>
           <span>{key}:</span>
           <span

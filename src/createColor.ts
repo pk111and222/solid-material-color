@@ -19,8 +19,7 @@ type Props = {
 export function createColor(props: Props) {
   const {source, variant, contrastLevel, isDark, crossOrigin} = props;
   const [status, setStatus] = createSignal<'' | "error" | "loading" | "done">('', { name: "count" })
-  const [scheme, setScheme] = createStore<SimpleDynamicScheme | {}>({});
-
+  const [schema, setScheme] = createSignal<SimpleDynamicScheme | {}>({});
 
   const options = createMemo(() => {
     return {
@@ -44,5 +43,5 @@ export function createColor(props: Props) {
 
   createEffect(() => getColor(), [source, options])
 
-  return [scheme, status] as const;
+  return [schema, status] as const;
 }

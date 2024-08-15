@@ -36,7 +36,7 @@ function MyChartComponent() {
   
   return (
     <div>
-       <For each={Object.entries(scheme)} fallback={<div>Loading...</div>}>
+       <For each={Object.entries(schema)}>
         {([key, value]) => <div>
           <span>{key}:</span>
           <span

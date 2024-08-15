@@ -102,7 +102,6 @@ export async function getMaterialColor (
   }, {} as Partial<SimpleDynamicScheme>);
 
   return newScheme as SimpleDynamicScheme;
-
 }
 
 // Synchronization method，not allow http
