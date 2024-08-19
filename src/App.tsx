@@ -1,4 +1,4 @@
-import { createSignal, Component, For } from "solid-js";
+import { createSignal, Component, For, createRenderEffect, createEffect } from "solid-js";
 import { createColor } from "./createColor";
 import { ContrastLevelType, VariantType } from "./schemes";
 
@@ -68,8 +68,8 @@ const Playground: Component = () => {
           <option value="reduced">reduced</option>
         </select>
       </div>
-      <For each={Object.entries(scheme())} fallback={<div>Loading...</div>}>
-        {([key, value]: [string, string]) => <div style={{ display: "flex", gap: '10px', 'margin-top': '5px' }}>
+      {!scheme.loading ? <For each={Object.entries(scheme())} fallback={<div>Loading...</div>}>
+        {([key, value]: [string, unknown]) => <div style={{ display: "flex", gap: '10px', 'margin-top': '5px' }}>
           <span>{key}:</span>
           <span
             style={{
@@ -77,12 +77,12 @@ const Playground: Component = () => {
               border: `1px solid #000`,
               width: '100px',
               height: '20px',
-              background: value,
+              background: value as string,
             }}
           />
           <span>{value as string}</span>
         </div>}
-      </For>
+      </For>: null}
     </div>
   );
 }

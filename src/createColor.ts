@@ -1,12 +1,10 @@
-import type { StoreNode, Store, SetStoreFunction } from "solid-js/store";
 import {
   ContrastLevelType,
   SimpleDynamicScheme,
   VariantType,
 } from "./schemes";
 import { getMaterialColor } from './basic'
-import { Accessor, createEffect, createMemo, createRenderEffect, createSignal, Signal } from "solid-js";
-import { createStore } from "solid-js/store";
+import { Accessor, createMemo, createResource } from "solid-js";
 
 type Props = {
   source: Accessor<string | number>, // hex, rgba or http
@@ -18,8 +16,6 @@ type Props = {
 
 export function createColor(props: Props) {
   const {source, variant, contrastLevel, isDark, crossOrigin} = props;
-  const [status, setStatus] = createSignal<'' | "error" | "loading" | "done">('', { name: "count" })
-  const [schema, setScheme] = createSignal<SimpleDynamicScheme | {}>({});
 
   const options = createMemo(() => {
     return {
@@ -30,18 +26,26 @@ export function createColor(props: Props) {
     }
   })
 
-  const getColor = async () => {
-    setStatus("loading")
-    const schema = await getMaterialColor(source(), options())
+  const variation = createMemo(() => {
+    return {options: options(), source: source()}
+  })
+
+  const getColor = async (value: any) => {
+    const schema = await getMaterialColor(value.source, value.options)
     if(schema === null) {
-      setStatus("error")
+      return {}
     } else {
-      setScheme(schema)
-      setStatus("done")
+      return schema
     }
   }
 
-  createEffect(() => getColor(), [source, options])
+  const [resorce] = createResource<any, SimpleDynamicScheme | {}>(variation, getColor)
 
-  return [schema, status] as const;
+  const status = createMemo(() => {
+    if(resorce.loading) return 'loading'
+    else if (resorce.error) return 'error'
+    else return 'success'
+  })
+
+  return [resorce, status] as const;
 }

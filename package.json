@@ -1,6 +1,6 @@
 {
   "name": "solid-material-color",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A tool library for generating color value order",
   "author": "pk111and222 <pk111and222@live.com>",
   "homepage": "https://https://github.com/pk111and222/solid-material-color",
@@ -34,11 +34,11 @@
     "format:scripts": "prettier ./src --write",
     "format:styles": "stylelint ./**/*.{css,scss} --fix"
   },
-  "dependencies": {
-    "@material/material-color-utilities": "^0.3.0"
-  },
   "peerDependencies": {
     "solid-js": "^1.8.17"
+  },
+  "dependencies": {
+    "@material/material-color-utilities": "^0.3.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",

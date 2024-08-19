@@ -106,3 +106,10 @@ The following are the parameters and return values of each function call.
 | "rainbow"        | A playful theme - the seed color's hue does not appear in the theme. |
 | "fruit_salad"    | A playful theme - the seed color's hue does not appear in the theme. |
 | "image_fidelity" | Not an official variant, custom made. It extracts top 3 dominant colors and set as primary, secondary and tertiary palettes. |
+
+## version record
+#### 1.0.0 
+- Initialize basic content
+#### 1.1.0
+- Fix the problem that the associated presentation does not take effect. 
+- Adjust the generation mode to createResource mode.
